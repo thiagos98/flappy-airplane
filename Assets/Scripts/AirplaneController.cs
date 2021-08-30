@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Serialization;
+﻿using UnityEngine;
 
-public class AirplaneController : MonoBehaviour
+public class AirplaneController : MonoBehaviour 
 {
-    [SerializeField] private float _impulse = 10;
     private Rigidbody2D _rigidbody;
-    
+    [SerializeField] private float force = 6;
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    private void FixedUpdate()
-    {
+    private void Update () {
         if (Input.GetButtonDown("Jump"))
         {
             Boost();
@@ -24,6 +19,7 @@ public class AirplaneController : MonoBehaviour
 
     private void Boost()
     {
-        _rigidbody.AddForce(Vector2.up * _impulse, ForceMode2D.Impulse);
+        _rigidbody.velocity = Vector2.zero;
+        _rigidbody.AddForce(Vector2.up * force, ForceMode2D.Impulse);
     }
 }
