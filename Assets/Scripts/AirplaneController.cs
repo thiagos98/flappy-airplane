@@ -3,7 +3,7 @@
 public class AirplaneController : MonoBehaviour 
 {
     private Rigidbody2D _rigidbody;
-    [SerializeField] private float force = 6;
+    [SerializeField] private float _force = 6;
     private GameController _gameController;
 
     private void Awake()
@@ -22,7 +22,7 @@ public class AirplaneController : MonoBehaviour
     private void Boost()
     {
         _rigidbody.velocity = Vector2.zero;
-        _rigidbody.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+        _rigidbody.AddForce(Vector2.up * _force, ForceMode2D.Impulse);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
