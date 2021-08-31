@@ -550,10 +550,10 @@ GameObject:
   m_Component:
   - component: {fileID: 660052637}
   - component: {fileID: 660052636}
-  - component: {fileID: 660052640}
   - component: {fileID: 660052635}
   - component: {fileID: 660052638}
   - component: {fileID: 660052639}
+  - component: {fileID: 660052640}
   m_Layer: 0
   m_Name: Airplane
   m_TagString: Player
@@ -683,7 +683,7 @@ Animator:
   m_GameObject: {fileID: 660052634}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 771c173b849fa504ca729611e97da062, type: 2}
+  m_Controller: {fileID: 9100000, guid: c43b55230c0b258478552a913279bfd3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
