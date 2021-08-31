@@ -20,16 +20,15 @@ public class GameController : MonoBehaviour
     {
         SetTimeScale(0f);
         _audioGameOver.PlayOneShot(AudioGameOverClip);
-        _ScoreText.gameObject.SetActive(false);
         _GameOverImage.gameObject.SetActive(true);
-        _score.ZeroPoints();
-        UpdateScoreText();
+        
     }
 
     public void RestartGame()
     {
+        _score.ZeroPoints();
+        UpdateScoreText();
         SceneManager.LoadScene("Game");
-        _ScoreText.gameObject.SetActive(true);
         _GameOverImage.gameObject.SetActive(false);
         SetTimeScale(1f);
     }
