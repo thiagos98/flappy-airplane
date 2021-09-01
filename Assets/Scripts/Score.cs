@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Score : MonoBehaviour
 {
@@ -17,14 +16,23 @@ public class Score : MonoBehaviour
         CurrentScore = 0;
     }
 
-    public void AddPoints()
+    public void AddScore()
     {
         CurrentScore++;
         _audioScore.PlayOneShot(AudioScoreClip);
     }
 
-    public void ZeroPoints()
+    public void ZeroScore()
     {
         CurrentScore = 0;
     }
+
+    public void SaveScore()
+    {
+        if (CurrentScore > PlayerPrefs.GetInt("MaxScore"))
+        {
+            PlayerPrefs.SetInt("MaxScore", CurrentScore);
+        }
+    }
+    
 }
