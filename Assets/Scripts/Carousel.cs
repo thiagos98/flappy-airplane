@@ -2,7 +2,7 @@
 
 public class Carousel : MonoBehaviour
 {
-    [SerializeField] private float _speed = 5f;
+    [SerializeField] private SharedVariable _speed;
     private Vector3 _initialPosition;
     private float _imageSize;
 
@@ -14,7 +14,7 @@ public class Carousel : MonoBehaviour
 
     private void Update()
     {
-        var displacement = Mathf.Repeat(_speed * Time.timeSinceLevelLoad, _imageSize);
+        var displacement = Mathf.Repeat(_speed.value * Time.timeSinceLevelLoad, _imageSize);
         transform.position = _initialPosition + Vector3.left * displacement;
     }
 }

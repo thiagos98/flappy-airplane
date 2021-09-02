@@ -2,7 +2,7 @@
 
 public class Obstacle : MonoBehaviour
 {
-    [SerializeField] private float _speed = 5f;
+    [SerializeField] private SharedVariable _speed;
     private GameController _gameController;
     private Vector3 _airplanePosition;
     private bool _isScored;
@@ -16,7 +16,7 @@ public class Obstacle : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(Vector3.left * (Time.deltaTime * _speed));
+        transform.Translate(Vector3.left * (Time.deltaTime * _speed.value));
         if (!_isScored && transform.position.x < _airplanePosition.x)
         {
             _gameController.CountPoints();
