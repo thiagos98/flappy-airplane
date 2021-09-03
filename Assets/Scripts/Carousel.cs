@@ -14,7 +14,7 @@ public class Carousel : MonoBehaviour
 
     private void Update()
     {
-        var displacement = Mathf.Repeat(_speed.value * Time.timeSinceLevelLoad, _imageSize);
+        var displacement = Mathf.Repeat(_speed.value * Time.timeSinceLevelLoad, _imageSize/2);
         transform.position = _initialPosition + Vector3.left * displacement;
     }
 }

@@ -8,8 +8,8 @@ public class ObstacleGenerator : MonoBehaviour
     [SerializeField] private float _timeToGenerateHard;
     [SerializeField] private GameObject _obstacle;
     private float _stopwatch;
-    private const float _maxRange = 1.90f;
-    private const float _minRange = -1.76f;
+    [SerializeField] private float _maxRange;
+    [SerializeField] private float _minRange;
     private DifficultyController _difficultyController;
 
     private void Awake()

@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
     private Score _score;
     private AudioSource _audioGameOver;
     public AudioClip AudioGameOverClip;
+    private AudioAirplaneController audioAirplane;
     
     private void Awake()
     {
@@ -18,6 +19,8 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         _interfaceController = FindObjectOfType<InterfaceController>();
+        audioAirplane = FindObjectOfType<AudioAirplaneController>();
+        audioAirplane.Play();
     }
 
     public void GameOver()
@@ -26,6 +29,7 @@ public class GameController : MonoBehaviour
         _audioGameOver.PlayOneShot(AudioGameOverClip);
         _interfaceController.SetGameOverPanel(true);
         MaxScore();
+        audioAirplane.Stop();
     }
 
     private void MaxScore()
@@ -38,7 +42,7 @@ public class GameController : MonoBehaviour
     {
         _score.ZeroScore();
         _interfaceController.UpdateScoreText(_score);
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Game Coop");
         _interfaceController.SetGameOverPanel(false);
         SetTimeScale(1f);
     }

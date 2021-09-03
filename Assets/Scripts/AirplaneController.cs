@@ -7,10 +7,16 @@ public class AirplaneController : MonoBehaviour
     [SerializeField] private float _force = 6;
     private GameController _gameController;
     private bool canBoost;
+    private Animator _animator;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
         _gameController = GameObject.FindObjectOfType<GameController>();
     }
 
@@ -19,6 +25,7 @@ public class AirplaneController : MonoBehaviour
         {
             canBoost = true;
         }
+        _animator.SetFloat("SpeedY", _rigidbody.velocity.y);
     }
 
     private void FixedUpdate()
