@@ -9,9 +9,11 @@ public class AirplaneController : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private bool canBoost;
     private Animator _animator;
+    private Vector3 _initialPosition;
 
     private void Awake()
     {
+        _initialPosition = transform.position;
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
     }
@@ -40,9 +42,16 @@ public class AirplaneController : MonoBehaviour
         _rigidbody.AddForce(Vector2.up * _force, ForceMode2D.Impulse);
         canBoost = false;
     }
+    
+    public void RestartAirplane()
+    {
+        transform.position = _initialPosition;
+        _rigidbody.simulated = true;
+    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        _rigidbody.simulated = false;
         _onCollision.Invoke();
     }
 }

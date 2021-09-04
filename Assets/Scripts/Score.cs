@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class Score : MonoBehaviour
 {
+    [SerializeField] private UnityEvent _whenScoring;
     private AudioSource _audioScore;
     public AudioClip AudioScoreClip;
     public int CurrentScore { get; private set; }
@@ -20,6 +22,7 @@ public class Score : MonoBehaviour
     {
         CurrentScore++;
         _audioScore.PlayOneShot(AudioScoreClip);
+        _whenScoring.Invoke();
     }
 
     public void ZeroScore()

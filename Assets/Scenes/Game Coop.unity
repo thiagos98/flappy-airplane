@@ -442,8 +442,8 @@ MonoBehaviour:
   _verticalLimiter:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2089852591}
-        m_MethodName: GameOver
+      - m_Target: {fileID: 701212083}
+        m_MethodName: Disable
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -522,7 +522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f816d4634cb687c4ca2b7fbec8592658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeToGenerateEasy: 5
+  _timeToGenerateEasy: 3
   _timeToGenerateHard: 1
   _obstacle: {fileID: 6460735762295747015, guid: dc677c08a5853884da18d5983390574b,
     type: 3}
@@ -585,7 +585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f816d4634cb687c4ca2b7fbec8592658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeToGenerateEasy: 5
+  _timeToGenerateEasy: 3
   _timeToGenerateHard: 1
   _obstacle: {fileID: 6460735762295747015, guid: dc677c08a5853884da18d5983390574b,
     type: 3}
@@ -992,6 +992,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2124611816}
         m_MethodName: Disable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2089852591}
+        m_MethodName: SomeoneDied
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6585,8 +6596,8 @@ MonoBehaviour:
   _verticalLimiter:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2089852591}
-        m_MethodName: GameOver
+      - m_Target: {fileID: 2124611816}
+        m_MethodName: Disable
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11402,7 +11413,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1693170267}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.7135527, y: 1.2, z: 0.02668817}
+  m_LocalPosition: {x: 0.7135527, y: 0.01, z: 0.02668817}
   m_LocalScale: {x: 2.23, y: 2.23, z: 2.23}
   m_Children:
   - {fileID: 825946467}
@@ -11589,6 +11600,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2089852591}
+        m_MethodName: SomeoneDied
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!50 &1693170273
 Rigidbody2D:
   serializedVersion: 4
@@ -11689,6 +11711,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e28b1bc2982b2941b6407c9078ce385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minRange: 0.45
+  maxRange: 0.65
 --- !u!1 &1912789575
 GameObject:
   m_ObjectHideFlags: 0
@@ -11746,7 +11770,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 2089852591}
+        - m_Target: {fileID: 0}
           m_MethodName: RestartGame
           m_Mode: 1
           m_Arguments:
@@ -12184,11 +12208,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2089852592}
-  - component: {fileID: 2089852591}
   - component: {fileID: 2089852593}
   - component: {fileID: 2089852594}
+  - component: {fileID: 2089852591}
   m_Layer: 0
-  m_Name: GameController
+  m_Name: GameControllerMultiplayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12203,7 +12227,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2089852590}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ade711faf9e97e418c6e9fd3ee936f1, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ee932fe3d318e346a22661cbe31c44d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   AudioGameOverClip: {fileID: 8300000, guid: 95129696b9d6a04449a7e57196c92e69, type: 3}
@@ -12233,6 +12257,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91c431b486d5b7240bf4d56e820bbbb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _whenScoring:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2089852591}
+        m_MethodName: ReviveIfNeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   AudioScoreClip: {fileID: 8300000, guid: 915d45db5377e4c4d8b8e40da8a0f0db, type: 3}
 --- !u!82 &2089852594
 AudioSource:

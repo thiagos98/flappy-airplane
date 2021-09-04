@@ -5,6 +5,8 @@ using UnityEngine;
 public class NPCController : MonoBehaviour
 {
     private AirplaneController _airplane;
+    [SerializeField] private float minRange;
+    [SerializeField] private float maxRange;
 
     private void Start()
     {
@@ -15,7 +17,7 @@ public class NPCController : MonoBehaviour
     {
         while(true)
         {
-            var timer = Random.Range(0.4f, 0.7f);
+            var timer = Random.Range(minRange, maxRange);
             yield return new WaitForSeconds(timer);
             _airplane.CanBoost();
         }

@@ -16,7 +16,7 @@ public class GameController : MonoBehaviour
         _score = GetComponent<Score>();
     }
 
-    private void Start()
+    protected virtual void Start()
     {
         _interfaceController = FindObjectOfType<InterfaceController>();
         audioAirplane = FindObjectOfType<AudioAirplaneController>();

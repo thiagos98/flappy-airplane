@@ -36,8 +36,13 @@ public class ObstacleGenerator : MonoBehaviour
         }
     }
 
-    public void Stop()
+    public void StopObstacles()
     {
         isStopped = true;
+    }
+
+    public void RestartObstacles()
+    {
+        isStopped = false;
     }
 }
