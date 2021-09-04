@@ -1,11 +1,12 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AirplaneController : MonoBehaviour 
 {
-    private Rigidbody2D _rigidbody;
     [SerializeField] private float _force = 6;
-    private GameController _gameController;
+    [SerializeField] private UnityEvent _onCollision;
+    private Rigidbody2D _rigidbody;
     private bool canBoost;
     private Animator _animator;
 
@@ -15,16 +16,8 @@ public class AirplaneController : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
-    private void Start()
+    private void Update () 
     {
-        _gameController = GameObject.FindObjectOfType<GameController>();
-    }
-
-    private void Update () {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            canBoost = true;
-        }
         _animator.SetFloat("SpeedY", _rigidbody.velocity.y);
     }
 
@@ -36,6 +29,11 @@ public class AirplaneController : MonoBehaviour
         }
     }
 
+    public void CanBoost()
+    {
+        canBoost = true;
+    }
+
     private void Boost()
     {
         _rigidbody.velocity = Vector2.zero;
@@ -45,6 +43,6 @@ public class AirplaneController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        _gameController.GameOver();
+        _onCollision.Invoke();
     }
 }
