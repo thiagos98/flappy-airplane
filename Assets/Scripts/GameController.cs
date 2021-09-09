@@ -38,11 +38,11 @@ public class GameController : MonoBehaviour
         _interfaceController.UpdateMaxScoreText();
     }
     
-    public void RestartGame()
+    public virtual void RestartGame(string scene)
     {
         _score.ZeroScore();
         _interfaceController.UpdateScoreText(_score);
-        SceneManager.LoadScene("Game Coop");
+        SceneManager.LoadScene(scene);
         _interfaceController.SetGameOverPanel(false);
         SetTimeScale(1f);
     }
