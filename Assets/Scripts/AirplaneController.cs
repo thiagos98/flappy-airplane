@@ -1,30 +1,25 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AirplaneController : MonoBehaviour 
 {
-    private Rigidbody2D _rigidbody;
     [SerializeField] private float _force = 6;
-    private GameController _gameController;
+    [SerializeField] private UnityEvent _onCollision;
+    private Rigidbody2D _rigidbody;
     private bool canBoost;
     private Animator _animator;
+    private Vector3 _initialPosition;
 
     private void Awake()
     {
+        _initialPosition = transform.position;
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
     }
 
-    private void Start()
+    private void Update () 
     {
-        _gameController = GameObject.FindObjectOfType<GameController>();
-    }
-
-    private void Update () {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            canBoost = true;
-        }
         _animator.SetFloat("SpeedY", _rigidbody.velocity.y);
     }
 
@@ -36,15 +31,27 @@ public class AirplaneController : MonoBehaviour
         }
     }
 
+    public void CanBoost()
+    {
+        canBoost = true;
+    }
+
     private void Boost()
     {
         _rigidbody.velocity = Vector2.zero;
         _rigidbody.AddForce(Vector2.up * _force, ForceMode2D.Impulse);
         canBoost = false;
     }
+    
+    public void RestartAirplane()
+    {
+        transform.position = _initialPosition;
+        _rigidbody.simulated = true;
+    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        _gameController.GameOver();
+        _rigidbody.simulated = false;
+        _onCollision.Invoke();
     }
 }

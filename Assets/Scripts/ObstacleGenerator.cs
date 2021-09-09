@@ -11,6 +11,7 @@ public class ObstacleGenerator : MonoBehaviour
     [SerializeField] private float _maxRange;
     [SerializeField] private float _minRange;
     private DifficultyController _difficultyController;
+    private bool isStopped;
 
     private void Awake()
     {
@@ -24,6 +25,8 @@ public class ObstacleGenerator : MonoBehaviour
 
     private void Update()
     {
+        if (isStopped) return;
+
         _stopwatch -= Time.deltaTime;
         if (_stopwatch < 0)
         {
@@ -31,5 +34,15 @@ public class ObstacleGenerator : MonoBehaviour
             Instantiate(_obstacle, transform.position, Quaternion.identity);
             _stopwatch = Mathf.Lerp(_timeToGenerateEasy, _timeToGenerateHard, _difficultyController.Difficulty);
         }
+    }
+
+    public void StopObstacles()
+    {
+        isStopped = true;
+    }
+
+    public void RestartObstacles()
+    {
+        isStopped = false;
     }
 }
